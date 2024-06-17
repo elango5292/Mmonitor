@@ -16,10 +16,17 @@
     "production:build": "npx prisma generate && npx prisma migrate deploy && next build"
   },
   "dependencies": {
+    "@nivo/core": "^0.87.0",
+    "@nivo/line": "^0.87.0",
+    "@nivo/pie": "^0.87.0",
     "@prisma/client": "^5.13.0",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.2",
+    "lucide-react": "^0.394.0",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "recharts": "^2.12.7"
   },
   "devDependencies": {
     "eslint": "^8",
