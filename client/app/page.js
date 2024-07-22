@@ -29,7 +29,7 @@ export default function Component() {
             <CupSodaIcon className="w-6 h-6" />
           </Button>
           <Button variant="ghost" size="icon" className="text-white" onClick={() => setActiveComponent(3)}>
-          <HandPlatterIcon className="w-6 h-6" />
+          <HandPlatterIcon className="w-6 h-6 hover:text-black" />
           </Button>
 
         </aside>
@@ -38,18 +38,18 @@ export default function Component() {
             <>
               <h1 className="text-3xl font-bold text-white">Operational Analytics</h1>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4 border-none">
                   <div className="text-lg font-semibold text-white">Total Cycle Time</div>
                   <div className="text-2xl font-bold text-white">00h 00m 00s</div>
                 </Card>
-                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4  border-none">
                   <div className="text-lg font-semibold text-white">Total Idle Time</div>
                   <div className="text-2xl font-bold text-white">00h 00m 00s</div>
                 </Card>
-                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4">
+                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4  border-none">
                   <PiechartChart />
                 </Card>
-                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4 h-96 overflow-auto">
+                <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4 h-96 overflow-auto  border-none">
                   <div className="flex justify-between items-center">
                     <div className="text-lg font-semibold text-white">2.5" DIP 1</div>
                     <div className="text-2xl font-bold text-white">80</div>
@@ -126,140 +126,324 @@ export default function Component() {
     </div>
           )}
           {activeComponent === 3 && (
-            <div className="flex flex-col justify-center">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <div className="space-y-2">
-              <Label htmlFor="length">Length (inch)</Label>
+            <div className="flex flex-row justify-around">
+           <div className="flex flex-col w-[500px] pl-[75px] pr-[54px] gap-y-2 pt-[92px]" style={{
+    width: 499,
+    height: 775,
+    borderRadius: 30,
+    background: "linear-gradient(134.57deg, rgba(0,0,0,0.3) 0.37%, rgba(0,0,0,0.3) 99.63%)",
+  }}>
+           <div className="space-y-2 flex flex-row items-center justify-between " >
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="length">Shape</Label>
               <Input type="text" style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="length" placeholder="Enter length"  />
+  }} className='!placeholder-white w-[130px] border-none rounded-xl' id="length" placeholder="Select Shape"  />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="width">Width (inch)</Label>
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="length">Type</Label>
+              <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Select Type"  />
+            </div>
+
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="length">Length (inch)</Label>
+              <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Enter length"  />
+            </div>
+
+
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="width">Width (inch)</Label>
                 <Input type="text" style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="width" placeholder="Enter width" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="width" placeholder="Enter width" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="height">Height (inch)</Label>
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="length">Diameter (CM)</Label>
+              <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Select Type"  />
+            </div>
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="length">Triangle Side (CM)</Label>
+              <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Select Type"  />
+            </div>
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="height">Height (inch)</Label>
                 <Input type="text" style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="height" placeholder="Enter height" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="height" placeholder="Enter height" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="topTemp">Top Temp (C)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="topTemp" placeholder="Enter top temperature" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="bottomTemp">Bottom Temp (C)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="bottomTemp" placeholder="Enter bottom temperature" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="ribCuring">Rib Curing (seconds)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="ribCuring" placeholder="Enter rib curing time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="botCuring">Bot Curing (seconds)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="botCuring" placeholder="Enter bot curing time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lupCuring">LUP Curing (seconds)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="lupCuring" placeholder="Enter LUP curing time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="cut">Cut (seconds)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="cut" placeholder="Enter cut time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="up">UP</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="up" placeholder="Enter UP" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lup">LUP</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="lup" placeholder="Enter LUP" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="topTolerance">Top (± 0.1 A)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="topTolerance" placeholder="Enter top tolerance" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="botTolerance">Bot (± 0.1 A)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="botTolerance" placeholder="Enter bot tolerance" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="tol">TOL</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="tol" placeholder="Enter TOL" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="mid">Mid (seconds)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="mid" placeholder="Enter mid time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="runTime">Run Time (seconds)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="runTime" placeholder="Enter run time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="leafSoakTime">Leaf Soak Time (hours)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="leafSoakTime" placeholder="Enter leaf soak time" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="leafDryTime">Leaf Dry Time (hours)</Label>
-                <Input type="text" style={{
-    background:
-      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white' id="leafDryTime" placeholder="Enter leaf dry time" />
-            </div>
-          </div>
-          <Button className="w-60 text-white rounded-md text-lg my-4" style={{
+
+            <Button className="w-60 mt-12 text-white rounded-md text-lg" style={{
       background:
         "linear-gradient(136.87deg, rgba(200,200,200,0.7) 1.53%, rgba(121,55,152,0.7) 98.47%)",
       boxShadow: "3px 3px 3px 3px rgba(0,0,0,0.25)",
-    }}>calculate</Button>
+    }}>Enter</Button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div className="flex flex-col justify-center pl-[69px] pr-[60px]" style={{
+    width: 648,
+    height: 775,
+    borderRadius: 30,
+    background: "linear-gradient(134.57deg, rgba(0,0,0,0.3) 0.37%, rgba(0,0,0,0.3) 99.63%)",
+  }}>
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="topTemp">Top Temperature (C)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="topTemp" placeholder="Enter top temperature" />
+            </div>
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="bottomTemp">Bottom Temperature (C)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="bottomTemp" placeholder="Enter bottom temperature" />
+            </div>
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="ribCuring">Preheat/Rib Curing (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="ribCuring" placeholder="Enter rib curing time" />
+            </div>
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="cut">Cut time (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="cut" placeholder="Enter cut time" />
+            </div>
+
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="lupCuring">LUP Curing (seconds)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lupCuring" placeholder="Enter LUP curing time" />
+            </div>
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="botCuring">Bot Curing (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="botCuring" placeholder="Enter bot curing time" />
+            </div>
+            
+            
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="up">LUP (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="up" placeholder="Enter UP" />
+            </div>
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="lup">LUP (CM)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+            </div>
+
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="lup">Cycle Time (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+            </div>
+            
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="lup">Load/Unload Time (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+            </div>
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="lup">Runtime (sec)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+            </div>
+
+            <div className="space-y-2 flex flex-row items-center justify-between">
+              <Label style={{
+    
+    height: 33,
+    fontSize: 20,
+    fontWeight: 700,
+    textAlign: "left",
+    color: "#fff",
+  }} htmlFor="lup">Soak Time (hr)</Label>
+                <Input type="text" style={{
+    background:
+      "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+            </div>
+          </div>
           </div>
           )}
         </main>
@@ -270,7 +454,7 @@ export default function Component() {
 
 function CustomSelect(props) {
   return (
-      <Select {...props} >
+      <Select {...props} className='border-none' >
                   <SelectTrigger className=" h-40 w-32 rounded-[30px]" style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
@@ -547,22 +731,8 @@ function BarchartmultipleChart(props) {
 
 function CupSodaIcon(props) {
   return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8" />
-      <path d="M5 8h14" />
-      <path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0" />
-      <path d="m12 8 1-6h2" />
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path className="hover:fill-black p-2" fill-rule="evenodd" clip-rule="evenodd" d="M2.22917 1.875C0.99804 1.875 0 2.84534 0 4.04223C0 4.44129 0.332685 4.76476 0.743063 4.76476H24.5208C24.9312 4.76476 25.2639 4.44129 25.2639 4.04223C25.2639 2.84534 24.2658 1.875 23.0347 1.875H2.22917ZM24.1806 10.2755C22.6839 9.5016 21.0145 9.09766 19.3194 9.09945C14.3846 9.10189 10.1316 12.4774 9.14106 17.1776C9.0777 17.5172 8.77526 17.7653 8.42032 17.7687H2.22917C0.99804 17.7687 0 16.7983 0 15.6014V8.37692C0 7.97803 0.332685 7.65455 0.743063 7.65455H24.5208C24.9312 7.65455 25.2639 7.97803 25.2639 8.37692V9.64415C25.2643 9.89578 25.1285 10.1292 24.9065 10.2587C24.6843 10.3881 24.4086 10.3945 24.1806 10.2755ZM23.1194 22.1149L23.054 22.1871C22.5863 22.7006 22.0064 23.1058 21.3569 23.3734C20.7034 23.6404 19.9959 23.7589 19.2882 23.7201C18.0916 23.6627 16.9681 23.143 16.1674 22.2766L16.7961 21.6669C17.1565 21.3225 17.2859 20.8096 17.1304 20.342C16.9823 19.8971 16.5891 19.5713 16.1139 19.4997L12.0866 18.8436C11.6572 18.7774 11.2212 18.915 10.9137 19.2137C10.6063 19.5123 10.4643 19.9361 10.5321 20.3535L11.2053 24.2605C11.2774 24.7261 11.6139 25.1121 12.0747 25.2575C12.2064 25.3 12.3444 25.322 12.4833 25.3225C12.8416 25.3212 13.1846 25.1807 13.4359 24.9324L14.0838 24.3038C15.4795 25.5861 17.3371 26.2846 19.2571 26.2487C20.3459 26.2326 21.4168 25.9758 22.3881 25.4974C23.3652 25.0183 24.2115 24.3212 24.8582 23.4629C25.2078 22.9946 25.1166 22.3418 24.6512 21.9811C24.1859 21.6204 23.5111 21.6793 23.1194 22.1149ZM26.5641 13.1697C27.0249 13.315 27.3615 13.7009 27.4335 14.1666L28.1083 18.0736C28.1703 18.4546 28.058 18.843 27.801 19.1368C27.5439 19.4306 27.1675 19.6006 26.7708 19.6022C26.6976 19.6019 26.6245 19.5957 26.5523 19.5834L22.5249 18.9275C22.0498 18.8558 21.6565 18.5299 21.5084 18.0852C21.3529 17.6175 21.4823 17.1047 21.8428 16.7602L22.4714 16.1503C21.6707 15.2839 20.5472 14.7643 19.3507 14.7069C18.643 14.668 17.9354 14.7867 17.2819 15.0538C16.6324 15.3213 16.0526 15.7266 15.5848 16.2401L15.5194 16.3122C15.1277 16.7477 14.4528 16.8067 13.9875 16.446C13.5222 16.0852 13.4311 15.4324 13.7807 14.9642C14.4272 14.106 15.2737 13.4088 16.2505 12.9298C17.2221 12.4514 18.2929 12.1944 19.3818 12.1785C21.3018 12.1424 23.1594 12.8408 24.5551 14.1232L25.2029 13.4948C25.5558 13.1429 26.0838 13.0167 26.5641 13.1697Z" fill="white"/>
     </svg>
   )
 }
@@ -570,25 +740,10 @@ function CupSodaIcon(props) {
 
 function HandPlatterIcon(props) {
   return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 3V2" />
-      <path d="M5 10a7.1 7.1 0 0 1 14 0" />
-      <path d="M4 10h16" />
-      <path d="M2 14h12a2 2 0 1 1 0 4h-2" />
-      <path d="m15.4 17.4 3.2-2.8a2 2 0 0 1 2.8 2.9l-3.6 3.3c-.7.8-1.7 1.2-2.8 1.2h-4c-1.1 0-2.1-.4-2.8-1.2L5 18" />
-      <path d="M5 14v7H2" />
-    </svg>
+    <svg className="hover:text-black !fill-green-500" width="30" height="26" viewBox="0 0 30 26"  xmlns="http://www.w3.org/2000/svg">
+<path className="hover:fill-black p-2" fill-rule="evenodd" clip-rule="evenodd" d="M22.5 0.875C18.3579 0.875 15 4.14886 15 8.18756C15.0045 12.2242 18.3598 15.4955 22.5 15.5001C26.6421 15.5001 30 12.2261 30 8.18756C30 4.14886 26.6421 0.875 22.5 0.875ZM2.49999 7.37495C1.11928 7.37495 0 8.46634 0 9.81258C0 10.2612 0.373087 10.625 0.833325 10.625H10.9667C11.208 10.6257 11.4379 10.5244 11.5967 10.3471C11.7557 10.1685 11.8268 9.93122 11.7917 9.69722C11.712 9.1976 11.6702 8.69303 11.6666 8.18756C11.6666 7.73875 11.2935 7.37495 10.8334 7.37495H2.49999ZM18.3334 8.18756C18.3334 8.63618 18.7065 8.99997 19.1666 8.99997H21.6667V11.4376C21.6667 11.8862 22.0397 12.25 22.5 12.25C22.9603 12.25 23.3334 11.8862 23.3334 11.4376V8.99997H25.8334C26.2935 8.99997 26.6666 8.63618 26.6666 8.18756C26.6666 7.73875 26.2935 7.37495 25.8334 7.37495H23.3334V4.93752C23.3334 4.48871 22.9603 4.1251 22.5 4.1251C22.0397 4.1251 21.6667 4.48871 21.6667 4.93752V7.37495H19.1666C18.7065 7.37495 18.3334 7.73875 18.3334 8.18756ZM13.6149 14.2227C16.6327 18.4671 22.3635 19.9488 27.1417 17.7198C27.3997 17.6 27.7027 17.6174 27.9446 17.7662C28.1863 17.9148 28.3331 18.1741 28.3333 18.4527V22.8126C28.3333 24.1588 27.2141 25.25 25.8334 25.25H2.49999C1.11928 25.25 0 24.1588 0 22.8126V14.6876C0 14.2388 0.373087 13.875 0.833325 13.875H12.9334C13.2051 13.8756 13.4595 14.0054 13.6149 14.2227Z" fill="white"/>
+</svg>
+
   )
 }
 
@@ -652,3 +807,18 @@ function PiechartChart(props) {
     </div>
   )
 }
+
+const CustomInput = ({ label, id, placeholder, style }) => {
+  return (
+    <div className="space-y-2">
+      <Label htmlFor={id}>{label}</Label>
+      <Input
+        type="text"
+        style={style}
+        className="!placeholder-white"
+        id={id}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+};
