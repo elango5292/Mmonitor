@@ -55,7 +55,7 @@ let data = JSON.stringify({
 let config = {
   method: 'post',
   maxBodyLength: Infinity,
-  url: 'http://127.0.0.1:5001/predict',
+  url: 'https://worldwide-lena-testwer-ae435e61.koyeb.app/predict',
   headers: { 
     'Content-Type': 'application/json'
   },
