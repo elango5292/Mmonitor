@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState } from "react"
@@ -9,9 +8,69 @@ import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/
 import { Pie, PieChart, CartesianGrid, XAxis, Bar, BarChart } from "recharts"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
+import axios from 'axios'
 
 export default function Component() {
   const [activeComponent, setActiveComponent] = useState(1)
+  const [shape, setShape] = useState('');
+  const [type, setType] = useState('');
+  const [length, setLength] = useState('');
+  const [width, setWidth] = useState('');
+  const [diameter, setDiameter] = useState('');
+  const [triangleSide, setTriangleSide] = useState('');
+  const [height, setHeight] = useState('');
+  const [prediction, setPrediction] = useState({
+    "BotTemp": 144.11489999999986,
+    "Bot_Curing": 41.965800000000044,
+    "CT": 7.858249999999828,
+    "Cut": 5.535699999999999,
+    "Diameter ": 12.0,
+    "Height": 12.0,
+    "LUP_Curing": 25.884299999999993,
+    "LUP_cm": 0.06150000000000007,
+    "LUP_sec": 0.12300000000000014,
+    "Length ": -1,
+    "PreHeat": 36.029549999999986,
+    "RT": 67.78860000000005,
+    "Shape": "Round",
+    "Soak_Time": 12,
+    "TopTemp": 151.9731499999997,
+    "TriSide": -1,
+    "Type": "Plate",
+    "ULT": 5.512730082470124,
+    "Width ": -1
+});
+
+  function a(){
+let data = JSON.stringify({
+  "Shape": shape,
+  "Type": type,
+  "Length": parseInt(length),
+  "Width": parseInt(width),
+  "Diameter":  parseInt(diameter),
+  "TriSide":  parseInt(triangleSide),
+  "Height":  parseInt(height),
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: 'http://127.0.0.1:5001/predict',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+ setPrediction(response.data);
+})
+.catch((error) => {
+  console.log(error);
+});
+
+  }
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-tr from-[#4A2CB0] via-[#863EDF] via-[#8329B2] via-[#8C0CA9] to-[#551087] text-white">
       
@@ -37,7 +96,7 @@ export default function Component() {
           {activeComponent === 1 && (
             <>
               <h1 className="text-3xl font-bold text-white">Operational Analytics</h1>
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4" >
                 <Card className="bg-gray-800 bg-opacity-50 rounded-lg p-4 border-none">
                   <div className="text-lg font-semibold text-white">Total Cycle Time</div>
                   <div className="text-2xl font-bold text-white">00h 00m 00s</div>
@@ -126,7 +185,7 @@ export default function Component() {
     </div>
           )}
           {activeComponent === 3 && (
-            <div className="flex flex-row justify-around">
+            <div className="flex flex-row justify-around max-w-[1200px]">
            <div className="flex flex-col w-[500px] pl-[75px] pr-[54px] gap-y-2 pt-[92px]" style={{
     width: 499,
     height: 775,
@@ -142,10 +201,18 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="length">Shape</Label>
-              <Input type="text" style={{
+             <select value={shape} onChange={(e) => setShape(e.target.value)}
+  style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white w-[130px] border-none rounded-xl' id="length" placeholder="Select Shape"  />
+  }} className='!placeholder-white w-[130px] py-2 border-none rounded-xl' id="length">
+  <option value="" disabled>Select Shape</option>
+  <option value="Round">Round</option>
+  <option value="Square">Square</option>
+  <option value="Rectangle">Rectangle</option>
+  <option value="Oval">Oval</option>
+  <option value="Triangle">Triangle</option>
+</select>
             </div>
 
             <div className="space-y-2 flex flex-row items-center justify-between">
@@ -157,10 +224,16 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="length">Type</Label>
-              <Input type="text" style={{
+              <select value={type} onChange={(e) => setType(e.target.value)}
+  style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Select Type"  />
+  }} className='!placeholder-white py-2 px-1 border-none rounded-xl w-[130px]' id="length" placeholder="Select Type">
+  <option value="" disabled>Select Type</option>
+  <option value="Plate">Plate</option>
+  <option value="Bowl">Bowl</option>
+  <option value="Tray">Tray</option>
+</select>
             </div>
 
 
@@ -173,7 +246,7 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="length">Length (inch)</Label>
-              <Input type="text" style={{
+              <Input type="text" value={length} onChange={(e) => setLength(e.target.value)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
   }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Enter length"  />
@@ -190,7 +263,7 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="width">Width (inch)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={width} onChange={(e) => setWidth(e.target.value)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
   }} className='!placeholder-white border-none rounded-xl w-[130px]' id="width" placeholder="Enter width" />
@@ -205,7 +278,7 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="length">Diameter (CM)</Label>
-              <Input type="text" style={{
+              <Input type="text" value={diameter} onChange={(e) => setDiameter(e.target.value)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
   }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Select Type"  />
@@ -220,7 +293,7 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="length">Triangle Side (CM)</Label>
-              <Input type="text" style={{
+              <Input type="text" value={triangleSide} onChange={(e) => setTriangleSide(e.target.value)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
   }} className='!placeholder-white border-none rounded-xl w-[130px]' id="length" placeholder="Select Type"  />
@@ -234,13 +307,13 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="height">Height (inch)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={height} onChange={(e) => setHeight(e.target.value)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
   }} className='!placeholder-white border-none rounded-xl w-[130px]' id="height" placeholder="Enter height" />
             </div>
 
-            <Button className="w-60 mt-12 text-white rounded-md text-lg" style={{
+            <Button className="w-60 mt-12 text-white rounded-md text-lg" onClick={()=>a()} style={{
       background:
         "linear-gradient(136.87deg, rgba(200,200,200,0.7) 1.53%, rgba(121,55,152,0.7) 98.47%)",
       boxShadow: "3px 3px 3px 3px rgba(0,0,0,0.25)",
@@ -273,10 +346,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="topTemp">Top Temperature (C)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.TopTemp.toFixed(2)}  style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="topTemp" placeholder="Enter top temperature" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="topTemp"  />
             </div>
             <div className="space-y-2 flex flex-row items-center justify-between">
               <Label style={{
@@ -287,10 +360,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="bottomTemp">Bottom Temperature (C)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.BotTemp.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="bottomTemp" placeholder="Enter bottom temperature" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="bottomTemp" />
             </div>
             <div className="space-y-2 flex flex-row items-center justify-between">
               <Label style={{
@@ -301,10 +374,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="ribCuring">Preheat/Rib Curing (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.PreHeat.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="ribCuring" placeholder="Enter rib curing time" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="ribCuring"  />
             </div>
             <div className="space-y-2 flex flex-row items-center justify-between">
               <Label style={{
@@ -315,10 +388,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="cut">Cut time (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.Cut.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="cut" placeholder="Enter cut time" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="cut"/>
             </div>
 
 
@@ -331,10 +404,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="lupCuring">LUP Curing (seconds)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.LUP_Curing.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lupCuring" placeholder="Enter LUP curing time" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lupCuring"/>
             </div>
 
             <div className="space-y-2 flex flex-row items-center justify-between">
@@ -346,10 +419,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="botCuring">Bot Curing (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.Bot_Curing.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="botCuring" placeholder="Enter bot curing time" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="botCuring"  />
             </div>
             
             
@@ -362,10 +435,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="up">LUP (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.LUP_sec.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="up" placeholder="Enter UP" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="up" />
             </div>
             <div className="space-y-2 flex flex-row items-center justify-between">
               <Label style={{
@@ -376,10 +449,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="lup">LUP (CM)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.LUP_cm.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" />
             </div>
 
 
@@ -392,10 +465,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="lup">Cycle Time (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.CT.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup"  />
             </div>
             
 
@@ -408,10 +481,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="lup">Load/Unload Time (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.ULT.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup"  />
             </div>
 
             <div className="space-y-2 flex flex-row items-center justify-between">
@@ -423,10 +496,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="lup">Runtime (sec)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.RT.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup"  />
             </div>
 
             <div className="space-y-2 flex flex-row items-center justify-between">
@@ -438,10 +511,10 @@ export default function Component() {
     textAlign: "left",
     color: "#fff",
   }} htmlFor="lup">Soak Time (hr)</Label>
-                <Input type="text" style={{
+                <Input type="text" value={prediction.Soak_Time.toFixed(2)} style={{
     background:
       "linear-gradient(134.57deg, rgba(164,164,164,0.5) 0.37%, rgba(164,164,164,0.3) 99.63%)",
-  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" placeholder="Enter LUP" />
+  }} className='!placeholder-white border-none rounded-xl w-[130px]' id="lup" />
             </div>
           </div>
           </div>
@@ -461,13 +534,26 @@ function CustomSelect(props) {
   }}>
                     <SelectValue placeholder="Select an option" />
                   </SelectTrigger>
-                  <SelectContent className="bg-gray-800 bg-opacity-40 text-white backdrop-blur-md	">
-                    <SelectItem value="option1">Option 1</SelectItem>
-                    <SelectItem value="option2">Option 2</SelectItem>
-                    <SelectItem value="option3">Option 3</SelectItem>
-                    <SelectItem value="option4">Option 4</SelectItem>
-                    <SelectItem value="option5">Option 5</SelectItem>
-                    <SelectItem value="option6">Option 6</SelectItem>
+                  <SelectContent className="bg-gray-800 bg-opacity-40 text-white backdrop-blur-md text-wrap">
+                  <SelectItem value="5SquareBowl">5" Square Bowl</SelectItem>
+<SelectItem value="5TriangleBowl">5" Triangle Bowl</SelectItem>
+<SelectItem value="6TriangleBowl">6" Triangle Bowl</SelectItem>
+<SelectItem value="6RoundBowl">6" Round Bowl</SelectItem>
+<SelectItem value="7RoundBowl">7" Round Bowl</SelectItem>
+<SelectItem value="FC">FC (french fry box)</SelectItem>
+<SelectItem value="6Round">6" Round</SelectItem>
+<SelectItem value="6SquarePlate">6" Square Plate</SelectItem>
+<SelectItem value="6TrianglePlate">6" Triangle Plate</SelectItem>
+<SelectItem value="6X3">6" X 3"</SelectItem>
+<SelectItem value="6.5Oval">6.5" Oval</SelectItem>
+<SelectItem value="8Square">8" Square</SelectItem>
+<SelectItem value="9SquarePlate">9" Square Plate</SelectItem>
+<SelectItem value="10Square">10" Square</SelectItem>
+<SelectItem value="SmallContainer">Small Container</SelectItem>
+<SelectItem value="DentedTray">Dented Tray</SelectItem>
+<SelectItem value="BigContainer">Big Container</SelectItem>
+<SelectItem value="Lid">Lid</SelectItem>
+<SelectItem value="13RoundTray">13" Round Tray</SelectItem>
                   </SelectContent>
                 </Select>
   )
